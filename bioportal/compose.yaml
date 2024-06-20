@@ -1,3 +1,5 @@
+name: bioportal-rest
+
 services:
   redis:
     image: redis:latest
