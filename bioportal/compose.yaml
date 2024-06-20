@@ -18,7 +18,7 @@ services:
       - '55556:55556'
 
   agraph:
-    image: franzinc/agraph:v8.1.0
+    image: franzinc/agraph:v8.1.1
     platform: linux/amd64
     env_file:
       - path: ./development.env
