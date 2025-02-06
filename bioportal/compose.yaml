@@ -12,7 +12,7 @@ services:
       - '8983:8983'
 
   mgrep:
-    image: ontoportal/mgrep:0.0.2
+    image: ontoportal/mgrep:0.0.3
     platform: linux/amd64
     ports:
       - '55556:55556'
