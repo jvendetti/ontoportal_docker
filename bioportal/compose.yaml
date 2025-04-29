@@ -20,6 +20,8 @@ services:
   agraph:
     image: franzinc/agraph:v8.1.1
     platform: linux/amd64
+    profiles:
+      - agraph
     env_file:
       - path: ./development.env
         required: true
@@ -32,3 +34,21 @@ services:
                agtool users add anonymous;
                agtool users grant anonymous root:bioportal:rw;
                tail -f /agraph/data/agraph.log;"
+
+  fourstore:
+    image: bde2020/4store
+    platform: linux/amd64
+    profiles:
+      - fs
+      - 4store
+    ports:
+      - '9000:9000'
+    volumes:
+      - 4store-data:/var/lib/4store
+    command: >
+      bash -c "4s-backend-setup bioportal &&
+               4s-backend bioportal &&
+               4s-httpd -D -s-1 -p 9000 bioportal"
+
+volumes:
+  4store-data:
